@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello,vue</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+   <div id="app">
+       <ol>
+           <li v-for="todo in todos">
+               {{todo.text}}
+           </li>
+       </ol>
+   </div>
+
+   <script>
+       var app=new Vue({
+           el:'#app',
+           data: {
+               todos:[
+                   {text:'学习JavaScript'},
+                   {text:'学习vue'},
+                   {text:'搞个牛项目'},
+                   {text:'成为大牛'}
+               ]
+           }
+
+       })
+   </script>
+
+</body>
+</html>
