@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<script>
+    /*
+    每个Vue实例在被创建之前，都要经过一系列的初始化过程。例如：实例需要配置数据观测（data observe）、编译模板、挂载实例到DOM，然后在数据更新时更新DOM。在这个过程中，实例会调用一些生命周期钩子，这就给我们提供了执行自定义逻辑的机会。
+    例如：created 这个钩子在实例被创建狗调用：
+    ** 钩子的 this 指向调用它的 Vue 实例。 **
+    * */
+
+    var vm=new Vue({
+        data:{
+            a:1
+        },
+        created:function () {
+            console.log('a is :'+this.a);   //this 指向Vue实例
+        }
+    })
+</script>
+</body>
+</html>

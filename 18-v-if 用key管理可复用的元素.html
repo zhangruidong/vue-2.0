@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="login">
+        <template v-if="type==='username'">
+            <label>username:</label>
+            <input type="text" placeholder="Enter your username">
+        </template>
+        <template v-else>
+            <label>Email:</label>
+            <input type="text" placeholder="Enter your email address">
+        </template>
+        <div>
+            <input type="button" v-on:click='toggle' value="toggle">
+        </div>
+    </div>
+<script>
+    var vm =new Vue({
+        el:'#login',
+        data: {
+            type:'email'
+        },
+        methods: {
+            toggle:function () {
+                this.type=this.type=='username'?'email':'username';
+                console.log(this.type)
+//                if(this.type=='username'){
+//                    this.tpye='email'
+//                }else{
+//                    this.type='username'
+//                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

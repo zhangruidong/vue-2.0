@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<!--<div id="app">-->
+    <!--<p v-if="seen">Now you can see me</p>-->
+<!--</div>-->
+<div id="app">
+    <div v-if="Math.random()>0.5">
+        Now you see me
+    </div>
+    <div v-else>
+        Now you don't
+    </div>
+</div>
+
+<script>
+
+var vm=new Vue({
+    el:'#app'
+})
+//    var vm=new Vue({
+//        el:'#app',
+//        data:{
+//            seen:false
+//        }
+//    })
+</script>
+</body>
+</html>

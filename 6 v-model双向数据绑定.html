@@ -5,7 +5,7 @@
     <title>Hello,vue</title>
     <script src="vue.js"></script>
 </head>
-<body>
+<!--<body>
    <div id="app">
        <p>{{message}}</p>
        <input type="text" v-model="message">
@@ -18,5 +18,20 @@
            }
        })
    </script>
+</body>-->
+<body>
+    <div id="app">
+        <p>{{message}}</p>
+        <input type="text" v-model="message">
+
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                message:'Hello vue.js'
+            }
+        })
+    </script>
 </body>
 </html>

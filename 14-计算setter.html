@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    {{ fullName }}
+</div>
+<script>
+    /*
+    * 计算属性默认只有 getter ，不过在需要时你也可以提供一个 setter ：
+    * */
+    var vm= new Vue({
+        el:'#app',
+        data: {
+            firstName:'zhang',
+            lastName:'ruidong'
+        },
+        computed: {
+            fullName: {
+                //getter
+                get:function () {
+                  return this.firstName+' '+this.lastName;
+                },
+
+                //setter
+                set:function (newName) {
+                    var name=newName.split(' ')
+                    this.firstName=name[0];
+                    this.lastName=name[name.length-1];
+                }
+            }
+        }
+    })
+/*
+* 现在再运行 vm.fullName = 'John Doe' 时， setter 会被调用， vm.firstName 和 vm.lastName 也相应地会被更新。
+* */
+</script>
+</body>
+</html>

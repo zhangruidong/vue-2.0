@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>Original message: "{{message}}"</p>
+    <p>Computed reverse message: "{{ reverseMessage() }}"</p>
+</div>
+<script>
+    var vm= new Vue({
+        el: '#app',
+        data: {
+            message:'Hello vue',
+        },
+        methods:{
+            reverseMessage:function () {
+                return this.message.split('').reverse().join('');
+//                return Date.now();
+            }
+        }
+    })
+//    vm.message='asdfsedddd'
+    /*
+    我们可以将同一个函数定义为一个method而不是一个计算属性。对于最终的结果，两种方式确实是相同的。然而不同的是计算属性是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。这就意味着只要message还没有发生变化，多次访问reverseMessage计算属性会立即返回之前的结果，而不必再次执行函数
+    * */
+</script>
+</body>
+</html>

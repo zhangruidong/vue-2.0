@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+<script>
+
+    const data={
+        a:1
+    }
+    var vm=new Vue({
+        el:'#app',
+        data
+    })
+    console.log(data.a)
+    console.log(vm.$data)
+    vm.$watch('a',function (newVal,oldVal) {
+        console.log(newVal+':'+oldVal)
+    })
+    setInterval(function () {
+        data.a+=10;
+    },1000)
+</script>
+</body>
+</html>

@@ -8,7 +8,7 @@
 <body>
    <div id="app">
        <p>{{message}}</p>
-       <input type="button" value="信息反转" v-on:click="reverseMessage">
+       <input type="button" value="信息反转" @click="reverseMessage">
    </div>
 
    <script>
@@ -19,7 +19,7 @@
            },
            methods: {
                reverseMessage:function () {
-                   this.message=this.message.split('').reverse().join('')
+                   this.message=Date.now();
                }
            }
        })

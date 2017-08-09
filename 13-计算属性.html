@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>Original message: "{{message}}"</p>
+    <p>Computed reverse message: "{{reverseMessage}}"</p>
+</div>
+<script>
+    var vm= new Vue({
+        el: '#app',
+        data: {
+            message:'Hello vue'
+        },
+        computed: {
+            reverseMessage: function () {
+                return this.message.split('').reverse().join('');
+//                return Date.now();
+            }
+        }
+    })
+    vm.message='asdfsedddd'
+</script>
+</body>
+</html>

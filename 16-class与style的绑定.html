@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+</head>
+<body>
+    <div id="bindClass" class="static" :class="{active:isActive,'text-danger':hasError}"></div>
+<script src="vue.js"></script>
+<script>
+    /*
+    * - 对象语法
+    * - 数组语法   数组语法可以包含对象语法
+    * */
+    var vm=new Vue({
+        el:'#bindClass',
+        data:{
+            isActive:true,
+            hasError:false
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p v-if="seen">Now you can see me</p>
+</div>
+<script>
+    /*
+    指令（Directives）是带有v-前缀的**特殊属性**。指令属性的值预期是单一JavaScript表达式（除了v-for）。指令的职责就是当其表达式的值改变时相对应的将某些行为应用到DOM上。
+    * */
+
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            seen:false
+        }
+    })
+</script>
+</body>
+</html>

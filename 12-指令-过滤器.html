@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>{{message | capitalize}}</div>
+</div>
+<script>
+    /*
+    指令（Directives）是带有v-前缀的**特殊属性**。指令属性的值预期是单一JavaScript表达式（除了v-for）。指令的职责就是当其表达式的值改变时相对应的将某些行为应用到DOM上。
+    * */
+    /*
+    参数：
+    一些指令能接受一个“参数”，在指令后以冒号指明。例如，v-bind指令被用来响应的更新HTML属性：
+    <a v-bind:href="url"></a>
+
+    另一个例子就是v-on指令，它用于监听DOM事件：
+    <a v-on:click="dosomething"></a>
+    这里的参数是监听的事件名。
+    * */
+
+    /*
+    Vue.js允许你自定义过滤器，可被用作一些常见的文本格式化。过滤器可以用在两个地方：mustache插值和v-bind 表达式。
+    过滤器应该被添加在JavaScript表达式的尾部，由管道符'\' 指示：
+    * */
+
+    var vm=new Vue({
+        el:'#app',
+        data:{
+            message:'wo need filter'
+        },
+        filters:{
+            capitalize:function (value) {
+                if(!value)return;
+                value=value.toString();
+                return value.charAt(0).toUpperCase()+value.slice(1);
+            }
+        }
+    })
+
+    /*
+    过滤器函数总是 接受表达式（之前操作链的结果）作为第一个参数。在这个例子中，capitalize过滤器函数会收到message的值作为第一个参数。
+
+    过滤器还可以串联：
+    {{ message | filterA | filterB }}
+
+    在上述例子中，filterA拥有单个参数，他会接受message的值，然后调用filterB，且filterA的处理结果会作为filterB的单个参数传递进来。
+
+    过滤器是JavaScript函数，因此可以接受参数：
+    {{ message | filterA('arg1', arg2) }}
+
+    这里，filterA是个拥有三个参数的函数。message的值将会作为第一个参数传入。字符串‘arg1' 将作为第二个参数传入，表达式arg2的值将作为第三个参数。
+    * */
+</script>
+</body>
+</html>
