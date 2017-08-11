@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <button @click="great">打个招呼！！！</button>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#example',
+            data:{
+                number:'Vue'
+            },
+            methods: {
+                great: function (e) {
+                    alert('hello '+this.number +'!!!')
+                    if(e){
+                        alert(e.target.nodeName)
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

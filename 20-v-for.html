@@ -6,12 +6,21 @@
     <script src="vue.js"></script>
 </head>
 <body>
-    <div id="app" v-show="show">我显示出来了</div>
+    <div id="example">
+        <ul v-for="item in items">
+            <li>{{item.message}}</li>
+        </ul>
+    </div>
     <script>
-        var vm=new Vue({
-            el: '#app',
-            data: {
-                show:false
+        var vm　=new Vue({
+            el: '#example',
+            data:{
+                items: [
+                    {message:'mon'},
+                    {message:'tus'},
+                    {message:'wed'},
+                    {message:'thu'}
+                ]
             }
         })
     </script>

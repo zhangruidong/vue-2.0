@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <bs-date-input data-3d-date-picker="true"
+                       class="date-picker-theme-dark">
+
+        </bs-date-input>
+    </div>
+    <script>
+        Vue.component('bsDateInput',{
+            template:`
+                <input type="date" class="form-control">
+            `
+        })
+        new Vue({
+            el:'#example'
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <!--<div id="example">
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{checked}}</label>
+    </div>
+    <script>
+        var vm=new Vue({
+            el: '#example',
+            data: {
+                checked:true
+            }
+        })
+    </script>-->
+    <!--多个勾选框绑定-->
+    <div id="form">
+        <input type="checkbox" id="Jack" value="Mike" v-model="checkedNames">
+        <label for="Jack">Jack</label>
+
+        <input type="checkbox" id="Tom" value="Tom" v-model="checkedNames">
+        <label for="Tom">Tom</label>
+
+        <input type="checkbox" id="Sear" value="Sear" v-model="checkedNames">
+        <label for="Sear">Sear</label>
+
+        <p>{{checkedNames}}</p>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#form',
+            data: {
+                checkedNames:[]
+            }
+        })
+    </script>
+</body>
+</html>

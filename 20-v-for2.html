@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="repeat-object">
+        <ul>
+            <li v-for="(value,key,index) in object">
+                {{index}}:{{key}}:{{value}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var vm　=new Vue({
+            el: '#repeat-object',
+            data: {
+                object: {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    age: 30
+                }
+            }
+        })
+    </script>
+</body>
+</html>

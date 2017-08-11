@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <my-compoent></my-compoent>
+    </div>
+    <script>
+        //注册
+        Vue.component('my-compoent',{
+            template:'<div>a custom conmoent</div>'
+        })
+        new Vue({ //创建根实例
+            el:'#example'
+        })
+
+    </script>
+</body>
+</html>

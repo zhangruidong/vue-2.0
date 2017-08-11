@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <button @click="number=number+1">次数增加1</button>
+        <p>这个按钮被点击了{{number}}次</p>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#example',
+            data:{
+                number:0
+            }
+        })
+    </script>
+</body>
+</html>

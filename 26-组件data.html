@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="example">
+        <my-compoent></my-compoent>
+        <my-compoent></my-compoent>
+        <my-compoent></my-compoent>
+    </div>
+    <script>
+        /*
+        组件意味着协同工作，通常父子组件会是这样的关系：
+            组件A在它的模块中使用了组件B。
+            他们之间必须要通信：
+                父组件要给子组件传递数据，子组件需将他内部发生的事情告知给父组件。
+            然而，在一个良好定义的接口中尽可能将父子组件解耦是很重要的。
+            这保证了每个组件可以在相对隔离的环境中书写和理解，也大幅提高了组件的可维护性和可重用性。
+        * */
+        /*
+        在Vue中，父子组件的关系可以总结为props down，events up 。父组件通过props向下传递数据给子组件，子组件通过events给父组件发送消息。
+        * */
+        //注册
+        /*var arr={counter:0}
+        Vue.component('my-compoent',{
+            template:'<button @click="counter+=1">{{counter}}</button>',
+            data:function () {
+                return arr
+            }
+        })*/
+        Vue.component('my-compoent',{
+            template:'<button @click="counter+=1">{{counter}}</button>',
+            data:function () {
+                return {
+                    counter:0
+                }
+            }
+        })
+        new Vue({ //创建根实例
+            el:'#example'
+        })
+
+    </script>
+</body>
+</html>
