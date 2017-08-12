@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <parent></parent>
+    </div>
+    <script>
+        Vue.component('child',{
+            template:`
+                <div>
+                    <h2>我是 子 组件的标题</h2>
+                    <p>我是 子 组件的内容</p>
+                    <p>我是 子 组件的更多内容</p>
+                    <slot>
+                        只有在没有分发内容的时候才会显示
+                    </slot>
+                </div>
+            `
+        })
+        Vue.component('parent',{
+            template:`
+                <div>
+                    <h1>我是父组件的标题</h1>
+                    <child>
+                        <p>我是 父 组件的内容</p>
+                        <p>我是 父 组件的更多内容</p>
+                    </child>
+                </div>
+            `
+        })
+        new Vue({
+            el:'#app'
+        })
+    </script>
+</body>
+</html>
