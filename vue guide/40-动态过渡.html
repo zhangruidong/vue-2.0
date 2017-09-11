@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+</head>
+<body>
+    <div id="dynamic-fade-demo">
+        fadeIn: <input type="range" min="0" :max="maxFadeDuration" v-model="fadeInduration">
+        fadeOut: <input type="range" min="0" :max="maxFadeDuration" v-model="fadeOutduration" >
+        <transition
+            :css="false"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @leave="leave"
+        >
+            <p v-if="show">hello</p>
+        </transition>
+        <div>
+            <button
+                    type="button"
+                    v-if="stop"
+                    @click="show=false;stop=false"
+            >
+                start animating
+            </button>
+            <button
+                    v-else
+                    type="button"
+                    @click="stop=true"
+            >
+                stop it!
+            </button>
+        </div>
+    </div>
+
+    <script src="velocity.js"></script>
+    <script src="vue.js"></script>
+    <script>
+        var vm= new Vue({
+            el: "#dynamic-fade-demo",
+            data: {
+                maxFadeDuration:1500,
+                fadeInduration:1000,
+                fadeOutduration:1000,
+                show:true,
+                stop:true
+            },
+            methods: {
+                beforeEnter: function (el) {
+                    el.style.opacity=0
+                },
+                enter: function (el,done) {
+                    var vm=this
+                    Velocity(
+                        el,
+                        {opacity:1},
+                        {
+                            duration: this.fadeInduration,
+                            complete: function () {
+                                done();
+                                if(!vm.stop){ // 当stop=false 让动画循环
+                                    vm.show=false;
+                                }
+                            }
+                        }
+                    )
+                },
+                leave: function (el,done) {
+                    var vm=this;
+                    Velocity(
+                        el,
+                        {opacity:0},
+                        {
+                            duration:this.fadeOutduration,
+                            complete:function () {
+                                done();
+                                vm.show=true;
+                            }
+                        }
+                    )
+                }
+            }
+        })
+    </script>
+</body>
+</html>

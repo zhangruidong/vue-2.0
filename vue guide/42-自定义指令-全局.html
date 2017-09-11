@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+</head>
+<body>
+    <div id="demo">
+        <input v-focus type="text">
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        Vue.directive("focus",{
+            inserted:function (el) {
+                el.focus();
+            }
+        })
+        new Vue({
+            el: "#demo",
+        })
+
+    </script>
+</body>
+</html>

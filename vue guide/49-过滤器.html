@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+</head>
+<body>
+    <div id="app">
+        {{msg | capitalize}}
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        var vm= new Vue({
+            el: "#app",
+            data: {
+                msg: "hello"
+            },
+            filters: {
+                capitalize: function (value) {  // 过滤器总接收表达式的值作为第一个参数（也就是meg的值）
+                    return value.charAt(0).toUpperCase()+value.slice(1);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

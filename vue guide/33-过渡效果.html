@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <style>
+        button {
+            width: 100px;
+        }
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s
+        }
+        .fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ {
+            opacity: 0
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button type="button" @click.prevent="show=!show">toggle</button>
+        <transition name="fade">
+            <p v-if="show">hellow</p>
+        </transition>
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#app",
+            data: {
+                show: true
+            }
+        })
+    </script>
+</body>
+</html>

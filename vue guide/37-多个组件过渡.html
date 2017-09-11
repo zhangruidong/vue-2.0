@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+    <style>
+        .component-fade-enter-active, .component-fade-leave-active {
+            transition: opacity .3s ease;
+        }
+        .component-fade-enter, .component-fade-leave-to
+            /* .component-fade-leave-active for below version 2.1.8 */ {
+            opacity: 0;
+        }
+        .component-fade-leave, .component-fade-enter-to
+            /* .component-fade-leave-active for below version 2.1.8 */ {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <input type="radio" v-on:click="view='v-a'" name="aaa">11
+        <input type="radio" v-on:click="view='v-b'" name="aaa">22
+        <transition name="component-fade" mode="out-in">
+            <component v-bind:is="view"></component>
+        </transition>
+    </div>
+    <script>
+
+        var app=new Vue({
+            el:'#app',
+            data: {
+                view: 'v-b'
+            },
+            methods:{
+                toVA:function () {
+                    alert(1)
+                }
+            },
+            components: {
+                'v-a': {
+                    template: '<div>Component A</div>'
+                },
+                'v-b': {
+                    template: '<div>Component B</div>'
+                }
+            }
+        })
+        console.log(app.view)
+    </script>
+</body>
+</html>
