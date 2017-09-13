@@ -7867,7 +7867,7 @@ setTimeout(function () {
       );
     }
   }
-  if ("development" !== 'production' &&
+  /*if ("development" !== 'production' &&
     config.productionTip !== false &&
     inBrowser && typeof console !== 'undefined'
   ) {
@@ -7876,7 +7876,7 @@ setTimeout(function () {
       "Make sure to turn on production mode when deploying for production.\n" +
       "See more tips at https://vuejs.org/guide/deployment.html"
     );
-  }
+  }*/
 }, 0);
 
 /*  */
