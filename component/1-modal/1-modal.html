@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <style>
+        p,h4{
+            margin:0;
+        }
+        .modal{
+            width: 500px;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,.2);
+            border-radius: 6px;
+            box-shadow: 0 3px 9px rgba(0,0,0,.5);
+
+        }
+        .modal-header {
+            padding: 15px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .modal-content div {
+            padding: 20px;
+        }
+        .modal-footer {
+            padding: 15px;
+            text-align: right;
+            border-top: 1px solid #e5e5e5;
+        }
+        .btn {
+            padding: 5px 15px;
+            border: none;
+            outline: none;
+        }
+        .blue {
+            color: #fff;
+            background-color: #39f;
+            border-color: #39f;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!--<div class="modal">
+            <div class="modal-header">
+                <h4>这是标题</h4>
+            </div>
+            <div class="modal-content">
+                <div>
+                    这里添加内容
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="button" class="btn blue" value="确定">
+                <input type="button" class="btn" value="取消">
+            </div>
+        </div>-->
+        <z-modal modal-title="学习清单" ></z-modal>
+        <z-modal @ok="okFn" >
+            <ul slot="modal-content">
+                <li v-for="item of list">{{item}}</li>
+            </ul>
+        </z-modal>
+        <z-modal>
+            <div slot="modal-footer">
+                <span>确定</span>
+                <span>重置</span>
+                <span>返回</span>
+            </div>
+        </z-modal>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+
+        Vue.component("z-modal",{
+            props:{
+              modalTitle:{
+                  type:String,
+                  default:"这是一个模态框"
+              }
+            },
+            template:`
+                <div class="modal">
+                    <div class="modal-header">
+                        <h4>{{modalTitle}}</h4>
+                    </div>
+                    <div class="modal-content">
+                        <div>
+                            <slot name="modal-content">
+                                这里添加内容
+                            </slot>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <slot name="modal-footer">
+                            <input type="button" class="btn blue" value="确定" @click="confirm">
+                            <input type="button" class="btn" value="取消">
+                        </slot>
+                    </div>
+                </div>
+            `,
+            methods:{
+                confirm:function () {
+                    console.log("子组件：确定");
+                    this.$emit("ok")
+                }
+            }
+        });
+
+        new Vue({
+            el: "#app",
+            data: {
+                list:["vue","react","webpack"]
+            },
+            methods:{
+                okFn:function () {
+                    console.log("父组件：ok");
+                }
+            }
+        })
+    </script>
+</body>
+</html>
