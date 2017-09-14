@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+</head>
+<body>
+    <div id="demo">
+        <p>
+            这是父组件{{count}}
+        </p>
+        <custom-component @child-click="beChanged" :count="count"></custom-component>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        Vue.component("custom-component",{
+            template:`
+                <div>
+                    <p>这是子组件{{childCount}}</p>
+                    <button @click="changeCount" type="button">{{count}}</button>
+                </div>
+            `,
+            props:["count"],
+            data(){
+                return {
+                    childCount:this.count
+                }
+            },
+            methods:{
+                changeCount:function () {
+                    this.childCount++;
+                    this.$emit("child-click");
+                }
+            }
+        })
+        new Vue({
+            el:"#demo",
+            data: {
+                count:2
+            },
+            methods:{
+                beChanged:function () {
+                    console.log(111);
+                    this.count+=2;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
