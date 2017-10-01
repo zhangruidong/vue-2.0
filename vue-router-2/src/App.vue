@@ -11,6 +11,7 @@
         </router-link>
         <router-link to="/document" tag="li">document</router-link>
         <router-link to="/about" tag="li">about</router-link>
+        <router-link to="/user" tag="li">user</router-link>
       </ul>
     </nav>
     <router-view></router-view>

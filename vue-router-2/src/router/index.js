@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import home from '@/components/test'
 import about from '@/components/about'
 import document from '@/components/document'
+import user from '@/components/user'
 import notFound from '@/components/404'
 
 import hobby from '@/views/hobby'
@@ -15,7 +16,7 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   scrollBehavior (to, from, savePosition) {
-    console.log(savePosition)
+    // console.log(savePosition)
     if (savePosition) {
       return savePosition
     } else {
@@ -50,6 +51,10 @@ export default new Router({
     {
       path: '/document',
       component: document
+    },
+    {
+      path: '/user/:tip?/:id?',
+      component: user
     },
     {
       path: '*',
