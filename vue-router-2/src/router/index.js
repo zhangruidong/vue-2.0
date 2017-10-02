@@ -28,7 +28,10 @@ export default new Router({
       path: '/',
       name: 'home',
       component: home,
-      alias: '/home'
+      alias: '/home',
+      meta: {
+        index: 0
+      }
     },
     {
       path: '/about',
@@ -40,7 +43,10 @@ export default new Router({
         },
         {
           path: '/',
-          component: study
+          component: study,
+          meta: {
+            index: 2
+          }
         },
         {
           path: 'hobby',
@@ -50,11 +56,17 @@ export default new Router({
     },
     {
       path: '/document',
-      component: document
+      component: document,
+      meta: {
+        index: 1
+      }
     },
     {
       path: '/user/:tip?/:id?',
-      component: user
+      component: user,
+      meta: {
+        index: 3
+      }
     },
     {
       path: '*',

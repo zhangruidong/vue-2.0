@@ -14,16 +14,30 @@
         <router-link to="/user" tag="li">user</router-link>
       </ul>
     </nav>
-    <router-view></router-view>
+    <transition :name="name">
+      <router-view class="center"></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
 export default {
   name: 'app',
+  watch: {
+    $route (to, from) {
+//      console.log(to.meta.index)
+//      console.log(from.meta.index)
+      if (to.meta.index > from.meta.index) {
+        this.name = 'left'
+      } else {
+        this.name = 'right'
+      }
+    }
+  },
   data () {
     return {
-      index: '/'
+      index: '/',
+      name: 'left'
     }
   }
 }
@@ -37,6 +51,13 @@ export default {
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+  .center {
+    position: absolute;
+    width:100%;
+    height: 100%;
+    left: 0;
+    top:100px;
   }
   img {
     width:200px;
@@ -60,5 +81,42 @@ export default {
   }
   a{
     text-decoration: none;
+  }
+  .left-enter {
+    transform: translateX(-100%);
+  }
+  .left-enter-active {
+    transition: 1s;
+  }
+  .left-enter-to {
+    transform: translateX(0);
+  }
+  .left-leave {
+    transform: translateX(0);
+  }
+  .left-leave-active {
+    transition: 1s;
+  }
+  .left-leave-to {
+    transform: translateX(100%);
+  }
+
+  .right-enter {
+    transform: translateX(100%);
+  }
+  .right-enter-active {
+    transition: 1s;
+  }
+  .right-enter-to {
+    transform: translateX(0%);
+  }
+  .right-leave {
+    transform: translateX(0%);
+  }
+  .right-leave-active {
+    transition: 1s;
+  }
+  .right-leave-to {
+    transform: translateX(-100%);
   }
 </style>
