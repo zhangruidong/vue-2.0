@@ -13,7 +13,7 @@ import work from '@/views/work'
 
 Vue.use(Router)
 
-export default new Router({
+let router = new Router({
   mode: 'history',
   scrollBehavior (to, from, savePosition) {
     // console.log(savePosition)
@@ -56,6 +56,10 @@ export default new Router({
     },
     {
       path: '/document',
+      beforeEnter (to, from, next) {
+        window.document.title = 'zzzzzrd'
+        next()
+      },
       component: document,
       meta: {
         index: 1
@@ -76,3 +80,16 @@ export default new Router({
     }
   ]
 })
+// router.beforeEach((to, from, next) => {
+//   console.log(to.meta.index)
+//   if (to.meta.index === 1) {
+//     next('/notFound')
+//   } else {
+//     next()
+//   }
+// })
+// router.afterEach((to, form) => {
+//   console.log('after')
+// })
+
+export default router

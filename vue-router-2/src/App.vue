@@ -14,6 +14,13 @@
         <router-link to="/user" tag="li">user</router-link>
       </ul>
     </nav>
+    <div class="handle">
+      <button type="button" @click="handleForward">前进</button>
+      <button type="button" @click="handleBack">后退</button>
+      <button type="button" @click="handleGo">Go前进几步</button>
+      <button type="button" @click="handleRe">刷新</button>
+      <button type="button" @click="handlePush">跳转到user</button>
+    </div>
     <transition :name="name">
       <router-view class="center"></router-view>
     </transition>
@@ -32,6 +39,25 @@ export default {
       } else {
         this.name = 'right'
       }
+    }
+  },
+  methods: {
+    handleForward () {
+      console.log(this.$router)
+      this.$router.forward()
+    },
+    handleBack () {
+      this.$router.back()
+    },
+    handleGo () {
+//      可以接受负值，负值表示后退，正值表示前进
+      this.$router.go(2)
+    },
+    handleRe () {
+      this.$router.go(0)
+    },
+    handlePush () {
+      this.$router.push('/user')
     }
   },
   data () {
@@ -57,7 +83,7 @@ export default {
     width:100%;
     height: 100%;
     left: 0;
-    top:100px;
+    top:160px;
   }
   img {
     width:200px;
