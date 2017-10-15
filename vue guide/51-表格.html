@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        html,body {
+            width:100%;
+        }
+        body {
+            margin: 0;
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            text-align: center;
+        }
+        input {
+            max-width: 50px;
+            text-align: center;
+        }
+        .active{
+            background-color: #fffd33;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <table border="1">
+            <tr>
+                <th>
+                    <input type="checkbox" v-model="isCheckedAll"></input>
+                </th>
+                <th>
+                    名称
+                </th>
+                <th>
+                    单价
+                </th>
+                <th>
+                    数量
+                </th>
+                <th>
+                    小计
+                </th>
+            </tr>
+            <tr v-for="item,index in list" :class="{active: item.checked}">
+                <td>
+                    <input type="checkbox" v-model="item.checked"></input>
+                </td>
+                <td>
+                    {{item.name}}
+                </td>
+                <td>
+                    {{item.price}}
+                </td>
+                <td>
+                    <button @click="sub(index)">-</button>
+                    <input type="text" v-model.number="item.number">
+                    <button @click="plus(index)">+</button>
+                </td>
+                <td>
+                    {{item.number*item.price}}
+                </td>
+            </tr>
+        </table>
+        <p style="text-align: right;margin-right: 20px">
+            总计：<button>{{total}}</button>
+        </p>
+        <p style="text-align: right;margin-right: 20px">
+            待付款：<button>{{toPay}}</button>
+        </p>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+          el: "#app",
+          data: {
+            list: [
+              {
+                name: 'iphone8',
+                price: 8888.00,
+                number: 0,
+                checked: false
+              },
+              {
+                name: 'imac',
+                price: 18666.00,
+                number: 0,
+                checked: false
+              },
+              {
+                name: 'macbook',
+                price: 12000.00,
+                number: 0,
+                checked: false
+              },
+              {
+                name: 'iwatch',
+                price: 3000.00,
+                number: 0,
+                checked: false
+              },
+              {
+                name: 'ipad',
+                price: 4000.00,
+                number: 0,
+                checked: false
+              },
+              {
+                name: 'ipod',
+                price: 1000.00,
+                number: 0,
+                checked: false
+              }
+            ]
+          },
+          computed: {
+            total(){
+              let sum = 0
+              this.list.forEach( item => {
+                sum += item.number*item.price
+              })
+              return sum
+            },
+            toPay(){
+              let total = 0;
+              this.list.forEach( item => {
+                if(item.checked){
+                  total += item.number*item.price
+                }
+              })
+              return total;
+            },
+            isCheckedAll: {
+              get(){
+                return !this.list.some(item => {
+                  return item.checked === false
+                });
+              },
+              set(checked){
+                this.list.forEach(item => {
+                  item.checked = checked;
+                })
+              }
+            }
+          },
+          methods: {
+            sub(n){
+              if(this.list[n].number>0)this.list[n].number--;
+            },
+            plus(n){
+              this.list[n].number++;
+            }
+          }
+        })
+    </script>
+</body>
+</html>
