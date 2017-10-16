@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        ul {
+            border: 1px solid red;
+        }
+        li {
+            height: 24px;
+            padding: 4px;
+        }
+        li:hover {
+            background-color: orangered;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <multiple-select :data="list" @chose="choseFn"></multiple-select>
+        <multiple-select :data="list2" @chose="choseFn2"></multiple-select>
+        <multiple-select :data="list3" @chose="choseFn3"></multiple-select>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+      Vue.component('multipleSelect',{
+        props: ['data'],
+        template: `
+            <ul>
+                <li v-for="item,index in data" @click="clickFn(index)">{{item.name}}</li>
+            </ul>
+        `,
+        methods: {
+          clickFn(index){
+            this.$emit('chose',index)
+          }
+        }
+      })
+      var app = new Vue({
+        el: '#app',
+        data: {
+          list: [
+            {name: '张三'},
+            {name: '李四'},
+            {name: '王五'},
+            {name: '赵六'},
+            {name: '田七'},
+            {name: '王八'},
+            {name: '贞九'}
+          ],
+          list2: [],
+          list3: [
+            {name: '刘伟'},
+            {name: '莫涛'},
+            {name: '童斌'}
+          ]
+        },
+        methods: {
+          choseFn(index){
+            let arr=this.list.splice(index,1);
+            this.list2.push(arr[0])
+          },
+          choseFn2(index){
+            let arr=this.list2.splice(index,1);
+            this.list.push(arr[0])
+          },
+          choseFn3(index){
+            let arr=this.list3.splice(index,1);
+            this.list.push(arr[0])
+            this.list2.push(arr[0])
+          }
+        }
+      });
+    </script>
+</body>
+</html>

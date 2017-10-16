@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .active {
+            background-color: orangered;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <demonstration :page="page"></demonstration>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        let vm = new Vue({
+          el: "#app",
+          components: {
+            'demonstration': {
+              props: ['page'],
+              data(){
+                return {
+                  pageNow:1
+                }
+              },
+              computed:{
+                pageData: {
+                  get(){
+                    let arr= [];
+                    for (let i = 0; i < this.page; i++) {
+                        arr.push(i+1)
+                    }
+                    return arr
+                  },
+                  set(){
+
+                  }
+                }
+              },
+              template: `
+                <div>
+                    <button @click="preFn">上一页</button>
+                    <button v-for="item,index in pageData" :class="{active: index ===pageNow}" @click="choseFn(index)">{{item}}</button>
+                    <button @click="nextFn">下一页</button>
+                </div>
+              `,
+              methods: {
+                preFn(){
+                  if(this.pageNow>0) this.pageNow--;
+                },
+                nextFn(){
+                  if(this.pageNow<this.pageData.length-1)this.pageNow++;
+                },
+                choseFn(index){
+                  this.pageNow= index;
+                }
+              }
+            }
+          },
+          data: {
+            page: 7
+          }
+        })
+    </script>
+</body>
+</html>

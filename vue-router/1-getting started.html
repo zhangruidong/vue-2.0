@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        <h1>hello vue-router</h1>
+        <router-link to="/foo.vue">Go to foo</router-link>
+        <router-link to="/bar.vue">Go to bar</router-link>
+        <p>
+            <router-view></router-view>
+        </p>
+    </div>
+
+    <script>
+        import foo from 'foo.vue';
+        import bar from 'bar.vue'
+        const routes=[
+            { path:'/foo',compontent:foo},
+            { path:'/bar',component:bar}
+        ];
+        const router = new VueRouter({
+            routes
+        })
+        const vm=new Vue({
+            router
+        }).$mount("#app");
+    </script>
+</body>
+</html>

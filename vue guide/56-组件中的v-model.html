@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <zrd-select :data="selectData" v-model="color"></zrd-select>
+        <div class="box" :style="{backgroundColor:color}"></div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        Vue.component("zrdSelect",{
+          props: ['data','value'],
+          model:{
+            prop: 'value',
+            event:  'hahaha'
+          },
+          template: `
+            <div class="select">
+                <h2>{{value}}</h2>
+                <ul>
+                    <li v-for="item in data" @click="clickFn(item)">{{item}}</li>
+                </ul>
+            </div>
+          `,
+          methods:{
+            clickFn(val){
+              console.log(val);
+              this.$emit('hahaha',val)
+            }
+          }
+        })
+        let vm = new Vue({
+          el: "#app",
+          data: {
+            color: 'red',
+            selectData: ['red','yellow','green','blue']
+          }
+        })
+    </script>
+</body>
+</html>

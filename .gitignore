@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+vue-router-2/node_modules
+vue-router-demo/node_modules
+vux/select/node_modules
+vue-element/node_modules
+package-lock.json
+
+

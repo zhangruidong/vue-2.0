@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+</head>
+<body>
+    <script>
+        let a=10,b=100,c=1000;
+        let obj={a,b,c}
+        console.log(obj);
+        function aaa() {
+          return {
+            a,b,c
+          }
+        }
+        let bbb = function() {
+          return {
+            a,b,c
+          };
+        }
+        let obj2 = {
+          ccc(){
+            return {a,b,c}
+          }
+        }
+        console.log(aaa());
+        console.log(bbb());
+        console.log(obj2.ccc());
+    </script>
+</body>
+</html>
