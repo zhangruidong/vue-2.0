@@ -24,12 +24,18 @@
             prop: 'value',
             event:  'hahaha'
           },
+          data(){
+            return {
+              selfData:['orange','yellow','green','blue']
+            }
+          },
           template: `
             <div class="select">
                 <h2>{{value}}</h2>
                 <ul>
-                    <li v-for="item in data" @click="clickFn(item)">{{item}}</li>
+                    <li v-for="item in selfData" @click="clickFn(item)">{{item}}</li>
                 </ul>
+                <span>{{selfData[0]}}</span>
             </div>
           `,
           methods:{

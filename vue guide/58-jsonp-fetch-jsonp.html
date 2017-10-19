@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js"></script>
+    <script src="fetch-jsonp.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li v-for="data in news">{{data.title}}</li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+  var app = new Vue({
+
+    el: '#app',
+
+    data: {
+      url: 'https://3g.163.com/touch/jsonp/sy/recommend/0-10.html?hasad=1&offset=0&size=10',
+      news: []
+    },
+    created() {
+      fetchJsonp(this.url, {
+        jsonpCallback: 'callback',
+        jsonpCallbackFunction: 'zrd'
+      })
+      .then( response => {
+        console.log(response);
+        return response.json();
+      } )
+      .then( data => {
+        console.log(data);
+        this.news = data.news;
+      } )
+    }
+
+  });
+
+</script>
+
+</body>
+</html>

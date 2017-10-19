@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="vue.js"></script>
+    <script src="fetch-jsonp.js" charset="utf-8"></script>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li v-for="data in news">{{data.title}}</li>
+    </ul>
+</div>
+
+<!--
+    tips：
+        1. jsonp的callback函数挂在window上，如：
+            window.zrd = (data) => {
+                this.news = data.news;
+            }
+            这样可以实现vue代码的整体性，不用从methods中分离出来
+
+        2. 在生命周期created的时候调用，在这一步，实例已完成以下的配置：数据观测 (data observer)，属性和方法的运算，watch/event 事件回调。此时可以对数据进行修改
+
+-->
+
+<script type="text/javascript">
+  var app = new Vue({
+    el: '#app',
+    data: {
+      url: 'https://3g.163.com/touch/jsonp/sy/recommend/0-10.html?hasad=1&offset=0&size=10',
+      news: []
+    },
+    created() {
+      this.getNews(this.url+"&callback=zrd")
+    },
+    methods: {
+      // 通过JSONP发送请求，拿取数据
+      getNews(url) {
+        let script = document.createElement('script');
+        script.src = url;
+        document.body.appendChild(script);
+        window.zrd = (data) => {
+          this.news = data.news;
+        }
+      }
+    }
+
+  });
+
+</script>
+
+</body>
+</html>
