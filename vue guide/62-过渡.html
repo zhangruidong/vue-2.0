@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 100px;
+        }
+        .zrd-enter {
+            opacity: 0;
+        }
+        .zrd-enter-active {
+            transition: 1s;
+        }
+        .zrd-enter-to {
+            opacity: 1;
+        }
+        .zrd-leave {
+            opacity: 1;
+        }
+        .zrd-leave-active {
+            transition: 3s;
+        }
+        .zrd-leave-to {
+            opacity: 0;
+        }
+        p {
+            display: none;
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="showFn">button</button>
+    <transition name="zrd">
+        <p :style="{display:show}">我们的爱迪生的，大发发</p>
+    </transition>
+</div>
+<script>
+
+    let vm =new Vue({
+      el: "#app",
+      data: {
+        show: "none"
+      },
+      methods: {
+        showFn(){
+          if(this.show == "none"){
+            this.show = "block"
+          }else {
+            this.show ="none"
+          }
+        }
+      }
+    })
+</script>
+</body>
+</html>

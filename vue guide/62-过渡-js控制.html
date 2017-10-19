@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        @keyframes hide {
+            0% {
+               opacity: 1;
+            }
+            70% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 100px;
+        }
+        .zrd-enter {
+            transform: translate(300px,0);
+            opacity: 0;
+        }
+        .zrd-enter-active {
+            transition: 1s;
+        }
+        .zrd-enter-to {
+            opacity: 1;
+            transform: translate(0,0);
+        }
+        .zrd-leave {
+            opacity: 1;
+        }
+        .zrd-leave-active {
+            animation: hide 4s;
+        }
+        .zrd-leave-to {
+            opacity: 0;
+        }
+        .notify {
+            width: 300px;
+            border: 1px solid #242424;
+            padding: 6px;
+            position: fixed;
+            right: 0;
+            top:40px;
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button @click="show= !show">button</button>
+    <transition name="zrd" @after-enter="afterEnter">
+        <div v-if="show" class="notify">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是提示文案这是提示,文案这是提示文案这是提示文案这,是提示文案这是提示文案这是提示文案这是提示文案。
+        </div>
+    </transition>
+</div>
+<script>
+
+    let vm =new Vue({
+      el: "#app",
+      data: {
+        show: false
+      },
+      methods :{
+        afterEnter(){
+            this.show = false
+        }
+      }
+    })
+</script>
+</body>
+</html>
