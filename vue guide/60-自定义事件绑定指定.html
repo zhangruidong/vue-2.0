@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        .box {
+            border:1px solid red;
+        }
+    </style>
+    <script src="vue.js"></script>
+    <script src="fetch-jsonp.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="box" v-at:click="fn1">
+        <button v-at:click.stop="fn">event</button>
+    </div>
+</div>
+<script>
+    /*
+    * 组件：自定义标签
+    * 指令：自定义属性
+    * */
+    Vue.directive('at',{
+      /*
+      * el: 绑定该指令的元素
+      * binding: 指令的详细信息，名称，参数，修饰符，指令值
+      * */
+      bind(el,binding){
+        el.addEventListener(binding.arg,function(e) {
+          if(binding.modifiers.stop){
+            e.stopPropagation()
+          }
+          binding.value();
+        },false);
+
+      }
+    })
+
+    let vm =new Vue({
+      el: "#app",
+      methods: {
+        fn(e){
+          console.log("click");
+//          e.stopPropagation()
+        },
+        fn1(){
+          console.log("div");
+        }
+      }
+    })
+</script>
+</body>
+</html>

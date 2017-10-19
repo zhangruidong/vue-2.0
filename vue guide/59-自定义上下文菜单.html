@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        .menu {
+            width: 120px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            background-color: #fff;
+            border: 1px solid black;
+            display: none;
+            position: absolute;
+            left: 0;
+            top:0;
+        }
+        .menu.active {
+            display: block;
+        }
+        .menu li {
+            height: 30px;
+            border-bottom: 1px solid grey;
+            cursor: pointer;
+        }
+        .menu li:last-of-type {
+            border-bottom: none;
+        }
+        .menu li:hover{
+            background-color: orange;
+        }
+    </style>
+    <script src="vue.js"></script>
+    <script src="fetch-jsonp.js"></script>
+</head>
+<body>
+<div id="app">
+    <button v-contextmenu="[1,2,3,4]">contextmenu</button>
+    <button v-contextmenu="['vue','react','angular']">contextmenu</button>
+    <button v-contextmenu="[99,66]">contextmenu</button>
+</div>
+<script>
+    /*
+    * 组件：自定义标签
+    * 指令：自定义属性
+    * */
+    Vue.directive('contextmenu',{
+      bind(el,binding){
+        el.oncontextmenu= function(e) {
+          if(!window.menu){
+            window.menu=document.createElement("ul");
+            window.menu.className="menu"
+            document.body.appendChild(window.menu)
+          }
+          let str="";
+          binding.value.forEach( (item) => {
+            str += `<li>${item}</li>`
+          })
+          window.menu.innerHTML=str;
+          window.menu.classList.add('active');
+          window.menu.style.left = e.clientX +"px";
+          window.menu.style.top = e.clientY +"px";
+          e.preventDefault();
+        }
+        document.onmousedown =function() {
+          if(window.menu){
+              window.menu.classList.remove('active');
+          }
+        }
+
+      }
+    })
+
+    let vm =new Vue({
+      el: "#app"
+    })
+
+</script>
+</body>
+</html>

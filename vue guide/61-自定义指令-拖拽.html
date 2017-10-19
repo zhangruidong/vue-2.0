@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 100px;
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="box" v-drag></div>
+    <div class="box" v-drag:limit></div>
+</div>
+<script>
+    Vue.directive('drag',{
+      /*
+      * el: 绑定该指令的元素
+      * binding: 指令的详细信息，名称，参数，修饰符，指令值
+      * */
+      bind(el,binding){
+        el.onmousedown =function(e) {
+          el.disX = e.clientX - el.offsetLeft;
+          el.disY = e.clientY - el.offsetTop;
+          document.onmousemove = function(e) {
+            el.L= e.clientX - el.disX;
+            el.T = e.clientY - el.disY;
+            if(binding.arg === "limit"){
+              if(el.L<0)el.L = 0;
+              if(el.T<0)el.T = 0;
+              if(el.L>document.documentElement.clientWidth-el.offsetWidth)el.L = document.documentElement.clientWidth - el.offsetWidth
+              if(el.T>document.documentElement.clientHeight-el.offsetHeight)el.T = document.documentElement.clientHeight - el.offsetHeight
+            }
+            el.style.left = el.L + "px"
+            el.style.top = el.T + "px"
+          }
+          document.onmouseup = function() {
+            document.onmousemove = document.onmouseup = null
+          }
+          return false;
+        }
+      }
+    })
+
+    let vm =new Vue({
+      el: "#app",
+    })
+</script>
+</body>
+</html>
