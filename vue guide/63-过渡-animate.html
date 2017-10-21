@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>zzzrd</title>
+    <link rel="stylesheet" href="animate.css">
+    <script src="vue.js"></script>
+    <style>
+        .animated {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <button>button</button>
+    <h1 class="animated">Example</h1>
+
+    <script>
+        let btn =document.querySelector("button");
+        let h1 = document.querySelector("h1");
+        btn.onclick = function() {
+          h1.classList.add("animated")
+          h1.classList.add("slideOutDown")
+        }
+        h1.addEventListener("animationend",function() {
+          console.log("end");
+          h1.classList.remove("animated")
+          h1.classList.remove("slideOutDown")
+//          h1.classList.add("bounceOutRight")
+        })
+    </script>
+</body>
+</html>
