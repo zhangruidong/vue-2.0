@@ -10,6 +10,9 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
+Vue.component('zrd',{
+  template: `<h2>hello!</h2>`
+})
 new Vue({
   el: '#app',
   router,

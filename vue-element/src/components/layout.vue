@@ -22,6 +22,7 @@
 
       <el-col :span="4"><div class="grid-content bg-purple"></div></el-col>
       <el-col :span="4"><div class="grid-content bg-purple-light"></div></el-col>
+      <p><i></i></p>
     </el-row>
   </div>
 
@@ -46,7 +47,15 @@
   }
 </script>
 
-<style>
+<style lang="less">
+  p{
+    i{
+      display: block;
+      width: 100px;
+      height:100px;
+      background-color: red;
+    }
+  }
   .el-row {
     margin-bottom: 20px;
   }

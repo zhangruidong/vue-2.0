@@ -23,6 +23,27 @@
             left: 0;
             top: 100px;
         }
+        .app-enter {
+            transform: translate(300px,0);
+            opacity: 0;
+        }
+        .app-enter-active {
+            transition: 1s;
+        }
+        .app-enter-to {
+            opacity: 1;
+            transform: translate(0,0);
+        }
+        .app-leave {
+            opacity: 1;
+        }
+        .zrd-leave-active {
+            animation: hide 4s;
+        }
+        .zrd-leave-to {
+            opacity: 0;
+        }
+
         .zrd-enter {
             transform: translate(300px,0);
             opacity: 0;
@@ -55,14 +76,27 @@
     <script src="vue.js"></script>
 </head>
 <body>
-<div id="app">
-    <button @click="show= !show">button</button>
-    <transition name="zrd" @after-enter="afterEnter">
-        <div v-if="show" class="notify">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是提示文案这是提示,文案这是提示文案这是提示文案这,是提示文案这是提示文案这是提示文案这是提示文案。
-        </div>
-    </transition>
-</div>
+<transition name="app">
+    <div id="app">
+        <button @click="show= !show">button</button>
+        <transition name="zrd" @after-enter="afterEnter">
+            <div v-if="show" class="notify">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是提示文案这是提示,文案这是提示文案这是提示文案这,是提示文案这是提示文案这是提示文案这是提示文案。
+            </div>
+        </transition>
+        <p>asdfasfsafsfsfsf啊发顺丰</p>
+        <p>asdfasfsafsfsfsf啊发顺丰</p>
+        <p>asdfasfsafsfsfsf啊发顺丰</p>
+        <p>asdfasfsafsfsfsf啊发顺丰</p>
+        <p>asdfasfsafsfsfsf啊发顺丰</p>
+        <p>asdfasfsafsfsfsf啊发顺丰</p>
+        <p>asdfasfsafsfsfsf啊发顺丰</p>
+        <p>asdfasfsafsfsfsf啊发顺丰</p>
+        <p>asdfasfsafsfsfsf啊发顺丰</p>
+        <p>asdfasfsafsfsfsf啊发顺丰</p>
+    </div>
+</transition>
+
 <script>
 
     let vm =new Vue({
